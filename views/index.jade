@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  
+  div.form-container
+    input(type="file" id="file-upload" accept=".xlsx, .xls")
+    textarea(id="return-address" placeholder="Enter return address here" rows="4" cols="50")
+    button(id="print-labels") Print Labels
+  div(id="data-table")
+  div(id="label-container")

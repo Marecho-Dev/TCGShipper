@@ -1,0 +1,92 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 20px 0;
+}
+
+input[type="file"],
+textarea,
+button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#data-table {
+  margin-top: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+@page {
+  margin: 0;
+  size: 9.5in 4.11in; /* Exactly match the envelope size */
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  body > *:not(#label-container) {
+    display: none;
+  }
+  #label-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  #label-container canvas {
+    page-break-after: always;
+    display: block;
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
