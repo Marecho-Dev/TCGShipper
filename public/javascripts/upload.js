@@ -76,15 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // White background
       ctx.fillStyle = "white";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvas.width / scale, canvas.height / scale);
 
       // Return Address
       ctx.fillStyle = "black";
-      ctx.font = "14px Arial";
+      ctx.font = "bold 14px Arial";
+      ctx.textBaseLine = "top";
+
       ctx.fillText(returnAddress[0], 30, 30);
       ctx.fillText(returnAddress[1], 30, 50);
       ctx.fillText(returnAddress[2], 30, 70);
-
+      returnAddress.forEach((line, index) => {
+        ctx.fillText(line, 30, 30 + index * 20);
+      });
       // Recipient Address
       ctx.font = "bold 16px Arial";
       const recipientName = `${row.FirstName} ${row.LastName}`.toUpperCase();
@@ -92,13 +96,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const recipientCityStateZip =
         `${row.City}, ${row.State} ${row.PostalCode}`.toUpperCase();
 
-      // Adjust centerX to move content slightly to the left
-      const centerX = canvas.width / 2 - 50;
-      const centerY = canvas.height / 2;
+      const centerX = 475 - 200; // Adjust this value to move text left or right
+      const centerY = 205; // Adjust this value to move text up or down
 
-      ctx.fillText(recipientName, centerX, centerY - 20);
-      ctx.fillText(recipientAddress, centerX, centerY + 10);
-      ctx.fillText(recipientCityStateZip, centerX, centerY + 40);
+      ctx.fillText(recipientName, centerX, centerY);
+      ctx.fillText(recipientAddress, centerX, centerY + 30);
+      ctx.fillText(recipientCityStateZip, centerX, centerY + 60);
+
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(0, 0, canvas.width / scale, canvas.height / scale);
 
       labelContainer.appendChild(canvas);
     });
