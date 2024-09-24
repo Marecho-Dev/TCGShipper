@@ -62,9 +62,17 @@ document.addEventListener("DOMContentLoaded", () => {
       processedOrders.add(row["Order #"]);
 
       const canvas = document.createElement("canvas");
-      canvas.width = 950; // Standard #10 envelope width (9.5 inches * 100)
-      canvas.height = 411; // Standard #10 envelope height (4.11 inches * 100)
+      const scale = 2;
+      canvas.width = 950 * scale; // Standard #10 envelope width (9.5 inches * 100)
+      canvas.height = 411 * scale; // Standard #10 envelope height (4.11 inches * 100)
+      canvas.style.width = "950px";
+      canvas.style.height = "411px";
       const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingEnabled = false;
+      ctx.textRendering = "optimizeLegibility";
+
+      // Scale everything
+      ctx.scale(scale, scale);
 
       // White background
       ctx.fillStyle = "white";
