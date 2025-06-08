@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.font = "bold 16px Arial";
       const recipientName = `${row.FirstName} ${row.LastName}`.toUpperCase();
       const recipientAddress = row.Address1.toUpperCase();
+      const recipientAddress2 = row.Address2 ? row.Address2.toUpperCase() : '';
       const recipientCityStateZip =
         `${row.City}, ${row.State} ${row.PostalCode}`.toUpperCase();
 
@@ -101,7 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       ctx.fillText(recipientName, centerX, centerY);
       ctx.fillText(recipientAddress, centerX, centerY + 30);
-      ctx.fillText(recipientCityStateZip, centerX, centerY + 60);
+      if (recipientAddress2) {
+        ctx.fillText(recipientAddress2, centerX, centerY + 60);
+        ctx.fillText(recipientCityStateZip, centerX, centerY + 90);
+      } else {
+        ctx.fillText(recipientCityStateZip, centerX, centerY + 60);
+      }
 
       ctx.strokeStyle = "black";
       ctx.lineWidth = 1;
