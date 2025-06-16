@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.font = "bold 16px Arial";
       const recipientName = `${row.FirstName} ${row.LastName}`.toUpperCase();
       const recipientAddress = row.Address1.toUpperCase();
-      const recipientAddress2 = row.Address2 ? row.Address2.toUpperCase() : '';
+      const recipientAddress2 = row.Address2 ? (isNaN(row.Address2) ? row.Address2.toUpperCase() : row.Address2) : '';
       const recipientCityStateZip =
         `${row.City}, ${row.State} ${row.PostalCode}`.toUpperCase();
 
