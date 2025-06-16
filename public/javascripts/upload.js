@@ -83,12 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.font = "bold 14px Arial";
       ctx.textBaseLine = "top";
 
-      ctx.fillText(returnAddress[0], 30, 30);
-      ctx.fillText(returnAddress[1], 30, 50);
-      ctx.fillText(returnAddress[2], 30, 70);
       returnAddress.forEach((line, index) => {
         ctx.fillText(line, 30, 30 + index * 20);
       });
+
       // Recipient Address
       ctx.font = "bold 16px Arial";
       const recipientName = `${row.FirstName} ${row.LastName}`.toUpperCase();
@@ -97,11 +95,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const recipientCityStateZip =
         `${row.City}, ${row.State} ${row.PostalCode}`.toUpperCase();
 
+      console.log('Drawing label for:', {
+        name: recipientName,
+        address1: recipientAddress,
+        address2: recipientAddress2,
+        cityStateZip: recipientCityStateZip
+      });
+
       const centerX = 475 - 200; // Adjust this value to move text left or right
       const centerY = 205; // Adjust this value to move text up or down
 
+      // Draw recipient address
       ctx.fillText(recipientName, centerX, centerY);
       ctx.fillText(recipientAddress, centerX, centerY + 30);
+      
+      // If there's an apartment number (Address2), add it
       if (recipientAddress2) {
         ctx.fillText(recipientAddress2, centerX, centerY + 60);
         ctx.fillText(recipientCityStateZip, centerX, centerY + 90);
