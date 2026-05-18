@@ -26,7 +26,10 @@ router.post("/api/upload", upload.single("file"), (req, res) => {
     const workbook = xlsx.readFile(req.file.path);
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
-    const data = xlsx.utils.sheet_to_json(sheet);
+    const data = xlsx.utils.sheet_to_json(sheet, {
+      raw: false,
+      defval: "",
+    });
 
     console.log("Parsed data:", data);
 
